@@ -1,0 +1,96 @@
+html,
+body {
+  width: 100%;
+  height: 100%;
+  background: #031321;
+  overflow: hidden;
+}
+#btn {
+  /* position:relative;
+  z-index: -2; */
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+}
+#btn a {
+  user-select: none;/*阻止文字被选中*/
+  position: relative;
+  z-index: 1;/*使元素位于伪类元素之上*/
+  background: #fff;
+  width: 300px;
+  height:100px;
+  border-radius: 50px;
+  line-height: 100px;
+  color: #fff;
+  font-size: 20px;
+  text-align: center;
+  text-decoration: none;
+  background: linear-gradient(
+    90deg,
+    hsl(273, 58%, 52%),
+    hsl(192, 91%, 43%),
+    hsl(143, 90%, 43%),
+    hsl(273, 58%, 52%)
+  );
+  background-size: 400%;
+}
+#btn a:hover {
+  animation: myscroll 5s linear infinite;
+}
+#btn a::after {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  border-radius: 55px;
+  left: -5px;
+  right: -5px;
+  top: -5px;
+  bottom: -5px;
+  background: linear-gradient(
+    90deg,
+    hsl(273, 58%, 52%),
+    hsl(192, 91%, 43%),
+    hsl(143, 90%, 43%),
+    hsl(273, 58%, 52%)
+  );
+  /* background:#fff; */
+  background-size: 400%;
+}
+#btn a:hover::after {
+  animation: myscroll 5s linear infinite;
+  filter: blur(10px);
+}
+@keyframes myscroll {
+  100% {
+    background-position: 400% 0;
+  }
+}
+.wave{
+  display: inline-block;
+  position:absolute;
+  background:#fff;
+  border-radius: 50%;
+  content: "jafl";
+  animation: wave 3s linear alternate;
+  transform: translate(-50%,-50%);
+}
+@keyframes wave{
+  0%{
+    width: 0;
+    height: 0;
+    opacity: .5;
+  }
+  98%{
+    width: 1000px;
+    height: 1000px;
+    opacity: 0;
+  }
+  100%{
+    width:0;
+    height:0;
+    opacity: 0;
+  }
+}

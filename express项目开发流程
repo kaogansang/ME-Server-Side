@@ -1,0 +1,42 @@
+1：使用generator初始化一个项目，模板引擎使用ejs，项目命名为blog
+    express --view=ejs blog
+2：使用sequelize-cli初始化项目中的sequelize相关的配置
+    sequelize init
+    其中：
+      config目录：sequelize所需要的连接数据库的配置文件
+      migrations目录：迁移文件,对数据库新增表，修改字段，删除表操作
+      models目录：数据库模型，一个模型对应数据库中的一个表
+      seeders目录：种子文件，存放测试内容
+3: 创建数据库：（config.json中设置的数据库）
+    sequelize db:create --charset 'utf8mb4'
+        如果报错需要安装mysql2则安装到与sequelize同一个目录下（同安装到项目内）
+4： 创建模型&生成迁移文件：
+    sequelize model:generate --name Article --attributes title:string,content:text
+        在项目的models目录中生成对应模型article
+5： 根据需求调整模型和迁移表
+6:  运行迁移，生成数据表：
+    sequelize db:migrate
+        将创建的模型迁移到数据库生成表（创建models对应表）：
+7:  创建种子文件：
+    sequelize seed:generate --name article
+        在项目的seeders目录下生成对应种子文件，修改文件内容可以实现操作表
+8： 将种子文件修改为自己想要填充的数据
+9： 运行种子文件：
+    sequelize db:seed:all
+        将种子文件中的数据添加到数据库
+10：为已有表增加列：创建迁移文件，运行迁移
+    sequelize migration:create --name add-列名-to-表名（名字随便取）
+    在迁移文件中使用方法：
+        queryInterface.addColumn('表名','列名',{
+            type: Sequelize.STRING,
+            allowNull: false,
+        })
+11：创建关联的方法：
+        hasMany、belongsTo、hasOne、belongsToMany
+        使用详解见官网或者： https://segmentfault.com/a/1190000011583301
+
+
+更多sequelize详情：https://www.sequelize.com.cn/other-topics/migrations
+
+
+
